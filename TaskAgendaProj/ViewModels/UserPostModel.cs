@@ -57,7 +57,7 @@ namespace TaskAgendaProj.ViewModels
                 LastName = userModel.LastName,
                 Username = userModel.Username,
                 Email = userModel.Email,
-                Password = userModel.Password,
+                Password = ComputeSha256Hash(userModel.Password),
                 UserRole = rol
             };
         }

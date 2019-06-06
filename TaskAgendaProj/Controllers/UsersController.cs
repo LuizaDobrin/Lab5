@@ -204,7 +204,7 @@ namespace TaskAgendaProj.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-         //   User currentUserLogIn = userService.GetCurentUser(HttpContext);
+            User currentUserLogIn = userService.GetCurentUser(HttpContext);
             var result = userService.Delete(id);
             if (result == null)
             {

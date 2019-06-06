@@ -22,6 +22,12 @@ namespace TaskAgendaProj.Models
                 .WithMany(c => c.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            //asa fac cascade pt delete
+            builder.Entity<Task>()
+           .HasOne(e => e.Owner)
+           .WithMany(c => c.Tasks)
+           .OnDelete(DeleteBehavior.Cascade);
+
         }
 
         public DbSet<Task> Tasks { get; set; }

@@ -163,7 +163,10 @@ namespace TaskAgendaProj.Services
 
         public UserGetModel Upsert(int id, UserPostModel userPostModel)
         {
-            var existing = context.Users.AsNoTracking().FirstOrDefault(u => u.Id == id);
+            var existing = context
+                .Users
+                .AsNoTracking()
+                .FirstOrDefault(u => u.Id == id);
             if (existing == null)
             {
                 User toAdd = UserPostModel.ToUser(userPostModel);
