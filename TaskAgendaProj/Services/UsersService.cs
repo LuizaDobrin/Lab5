@@ -161,20 +161,48 @@ namespace TaskAgendaProj.Services
 
         }
 
+        //public UserGetModel Upsert(int id, UserPostModel userPostModel)
+        //{
+        //    var existing = context
+        //        .Users
+        //        .AsNoTracking()
+        //        .FirstOrDefault(u => u.Id == id);
+        //    if (existing == null)
+        //    {
+
+        //       userPostModel.Password = ComputeSha256Hash(userPostModel.Password);
+        //        User toAdd = UserPostModel.ToUser(userPostModel);
+        //        context.Users.Add(toAdd);
+        //        context.SaveChanges();
+        //        return UserGetModel.FromUser(toAdd);
+        //    }
+
+        //   userPostModel.Password = ComputeSha256Hash(userPostModel.Password);
+
+        //    User toUpdate = UserPostModel.ToUser(userPostModel);
+        //    toUpdate.Id = id;
+        //    context.Users.Update(toUpdate);
+        //    context.SaveChanges();
+        //    return UserGetModel.FromUser(toUpdate);
+        //}
+
         public UserGetModel Upsert(int id, UserPostModel userPostModel)
         {
-            var existing = context
-                .Users
-                .AsNoTracking()
-                .FirstOrDefault(u => u.Id == id);
+            var existing = context.Users.AsNoTracking().FirstOrDefault(u => u.Id == id);
             if (existing == null)
             {
+                //User UserAdd = User.ToUser(user);
+                userPostModel.Password = ComputeSha256Hash(userPostModel.Password);
                 User toAdd = UserPostModel.ToUser(userPostModel);
                 context.Users.Add(toAdd);
                 context.SaveChanges();
                 return UserGetModel.FromUser(toAdd);
             }
 
+            //User UserUp = User.ToUser(user);
+
+
+            userPostModel.Password = ComputeSha256Hash(userPostModel.Password);
             User toUpdate = UserPostModel.ToUser(userPostModel);
             toUpdate.Id = id;
             context.Users.Update(toUpdate);
